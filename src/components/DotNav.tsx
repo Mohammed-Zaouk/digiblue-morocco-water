@@ -3,7 +3,7 @@ import { STOPS } from "./palette";
 import "../styles/Dots.css";
 
 export default function Dots() {
-  const [activeSection, setActiveSection] = useState("arrival");
+  const [activeSection, setActiveSection] = useState<string>("arrival");
   const [showLabel, setShowLabel] = useState(true);
 
   // Observe sections and detect the active one
@@ -16,7 +16,11 @@ export default function Dots() {
           }
         });
       },
-      { threshold: 0.5 },
+      {
+        // Observe a 1px line at the vertical center of the viewport
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0,
+      },
     );
 
     STOPS.forEach((stop) => {

@@ -1,3 +1,4 @@
+/* River */
 .river {
   position: absolute;
   inset-block: 0;
@@ -16,4 +17,102 @@
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   opacity: 0.55;
+}
+
+/* Ambient layer */
+.life {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  contain: layout paint;
+  color: #1f3a36;
+  transition: color 0.6s ease;
+}
+
+html[data-tone="light"] .life {
+  color: #f4f9fb;
+}
+
+/* Wave lines */
+.life::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0.08;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='48'%3E%3Cpath d='M0 24 Q 40 4 80 24 T 160 24' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='48'%3E%3Cpath d='M0 24 Q 40 4 80 24 T 160 24' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+  -webkit-mask-size: 160px 48px;
+  mask-size: 160px 48px;
+}
+
+/* Drops and ripples */
+.life__drop,
+.life__ripple {
+  position: absolute;
+}
+
+.life__drop {
+  border-radius: 50% 50% 50% 0;
+  background: currentColor;
+  opacity: 0.2;
+  transform: rotate(-45deg);
+  animation: life-bob 8s ease-in-out infinite;
+}
+
+.life__ripple {
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  animation: life-ripple 7s ease-out infinite;
+}
+
+/* Animations */
+@keyframes life-bob {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: translateY(0) rotate(-45deg);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(-14px) rotate(-45deg);
+  }
+}
+
+@keyframes life-ripple {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  .life__drop:nth-child(n + 10),
+  .life__ripple:nth-child(3) {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .life__drop,
+  .life__ripple {
+    animation: none;
+  }
+
+  .life__drop {
+    opacity: 0.15;
+  }
+
+  .life__ripple {
+    display: none;
+  }
 }
