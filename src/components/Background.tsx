@@ -158,8 +158,8 @@ export default function Background() {
       >
         <defs>
           <linearGradient id="river-gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#9a7448" />
-            <stop offset="0.55" stopColor="#7aa7b8" />
+            <stop offset="0" stopColor="#f5eee2" />
+            <stop offset="0.55" stopColor="#ffffff" />
             <stop offset="1" stopColor="#e8f6fb" />
           </linearGradient>
         </defs>

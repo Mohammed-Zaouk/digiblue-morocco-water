@@ -1,7 +1,7 @@
 /* Base */
 .section__inner.change {
   --change-ink: #f4f9fb;
-  --change-text: rgb(244 249 251 / 80%);
+  --change-text: rgb(244 249 251 / 90%);
   --change-accent: #f2c98a;
   --change-blue: #1d6a8f;
   --film-w: 100%;
@@ -191,6 +191,8 @@
   border: 1px solid rgb(244 249 251 / 22%);
   border-radius: 1.25rem;
   background: rgb(244 249 251 / 9%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .change__card-title {

@@ -154,6 +154,8 @@
   border: 1px solid rgb(31 58 54 / 14%);
   border-radius: 1.25rem;
   background: rgb(241 246 243 / 55%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .source__figure {

@@ -15,6 +15,16 @@
   width: 100%;
   padding: 1.5rem 4rem;
   color: var(--cream);
+  text-shadow: 0 1px 12px rgb(0 0 0 / 35%);
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -1.5rem;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgb(20 14 9 / 32%), transparent);
+  pointer-events: none;
 }
 
 /* Brand */
@@ -26,6 +36,12 @@
   text-decoration: none;
 }
 
+.header__brand:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
 .header__icon {
   display: grid;
   flex-shrink: 0;
@@ -34,7 +50,10 @@
   height: 38px;
   border-radius: 8px;
   background-color: var(--cream);
+  box-shadow: 0 6px 18px rgb(20 14 9 / 28%);
   color: #8d5935;
+  text-shadow: none;
+  transition: transform 0.25s ease;
 }
 
 .header__icon svg {
@@ -53,11 +72,14 @@
   font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+  transition: opacity 0.25s ease;
 }
 
 .header__subtitle {
   color: var(--cream-muted);
   font-size: 0.75rem;
+  letter-spacing: 0.03em;
 }
 
 /* Nav */

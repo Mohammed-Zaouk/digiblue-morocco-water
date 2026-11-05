@@ -15,10 +15,6 @@
 .village__title,
 .village__quote {
   font-family: Georgia, "Times New Roman", serif;
-}
-
-.village__title,
-.village__quote {
   text-wrap: balance;
 }
 

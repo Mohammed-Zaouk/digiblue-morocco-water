@@ -3,7 +3,11 @@ import "../styles/Header.css";
 export default function Header() {
   return (
     <header className="header">
-      <a className="header__brand" href="#arrival">
+      <a
+        className="header__brand"
+        href="#arrival"
+        aria-label="A Journey for Water, return to the beginning"
+      >
         <span className="header__icon" aria-hidden="true">
           <svg
             viewBox="0 0 24 24"

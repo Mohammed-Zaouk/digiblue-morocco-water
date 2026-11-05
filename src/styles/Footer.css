@@ -3,11 +3,13 @@
   --footer-blue: #1d6a8f;
   --footer-cream: #f5eee2;
   --footer-muted: #c2d9e2;
+  --footer-accent: #f2c98a;
 
   position: relative;
   overflow: hidden;
   padding: 7rem 8% 2rem;
   background-color: var(--footer-blue);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='48'%3E%3Cpath d='M0 24 Q 40 4 80 24 T 160 24' fill='none' stroke='%23f4f9fb' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E");
   color: var(--footer-cream);
 }
 
@@ -45,10 +47,11 @@
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.04em;
+  text-wrap: balance;
 }
 
 .footer h2 span {
-  color: #c5dfdf;
+  color: var(--footer-accent);
   font-style: italic;
 }
 
@@ -81,13 +84,24 @@
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .footer__back:hover {
   background-color: var(--footer-cream);
   border-color: var(--footer-cream);
   color: var(--footer-blue);
+  transform: translate(-50%, calc(-50% - 3px));
+}
+
+.footer__arrow {
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.footer__back:hover .footer__arrow {
+  transform: translateY(-2px);
 }
 
 .footer__label {
@@ -105,12 +119,16 @@
 .footer__value a {
   color: inherit;
   text-decoration-color: rgb(245 238 226 / 45%);
+  text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
-  transition: text-decoration-color 0.25s ease;
+  transition:
+    text-decoration-color 0.25s ease,
+    text-decoration-thickness 0.25s ease;
 }
 
 .footer__value a:hover {
-  text-decoration-color: var(--footer-cream);
+  text-decoration-color: var(--footer-accent);
+  text-decoration-thickness: 2px;
 }
 
 .footer a:focus-visible {
@@ -125,7 +143,7 @@
   left: 50%;
   width: 100px;
   height: 80px;
-  color: rgb(245 238 226 / 18%);
+  color: rgb(245 238 226 / 26%);
   transform: translateX(-50%);
 }
 
@@ -146,6 +164,7 @@
   border-top: 1px solid rgb(245 238 226 / 20%);
   font-size: 0.72rem;
   line-height: 1.7;
+  opacity: 0.85;
 }
 
 /* Phone */
@@ -172,7 +191,17 @@
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .footer__back,
+  .footer__arrow,
   .footer__value a {
     transition: none;
+  }
+
+  .footer__back:hover,
+  .footer__back:hover .footer__arrow {
+    transform: translate(-50%, -50%);
+  }
+
+  .footer__back:hover .footer__arrow {
+    transform: none;
   }
 }

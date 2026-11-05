@@ -56,8 +56,9 @@ export default function Dots() {
 
             <span
               className={`dot__label${showLabel && isActive ? " visible" : ""}`}
+              aria-current={isActive ? "true" : undefined}
             >
-              {stop.id}
+              {stop.id.replace(/-/g, " ")}
             </span>
           </div>
         );

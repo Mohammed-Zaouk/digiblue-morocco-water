@@ -1,7 +1,7 @@
 /* Base */
 .section__inner.drought {
   --drought-ink: #1d3a47;
-  --drought-text: #3b5663;
+  --drought-text: #162026;
   --drought-accent: #11506d;
   --drought-dry: #b4642a;
   --drought-cream: #f1f8fa;
@@ -160,6 +160,8 @@
   border: 1px solid rgb(29 58 71 / 14%);
   border-radius: 1.25rem;
   background: rgb(241 248 250 / 55%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .drought__card-title {

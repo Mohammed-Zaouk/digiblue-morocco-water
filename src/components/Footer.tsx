@@ -30,7 +30,9 @@ export default function Footer() {
             aria-label="Return to the beginning"
             title="Return to the beginning"
           >
-            <span aria-hidden="true">↑</span>
+            <span className="footer__arrow" aria-hidden="true">
+              ↑
+            </span>
           </a>
 
           <div className="footer__info-item">
@@ -53,7 +55,6 @@ export default function Footer() {
           <div className="footer__info-item">
             <p className="footer__label">STORY &amp; DEVELOPMENT</p>
             <p className="footer__value">
-              {" "}
               <a href="https://zaouk.dev/" target="_blank" rel="noreferrer">
                 Mohammed Zaouk
               </a>
