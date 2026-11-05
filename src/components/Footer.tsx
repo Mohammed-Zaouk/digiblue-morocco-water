@@ -23,21 +23,50 @@ export default function Footer() {
           <span>It's a part of life.</span>
         </h2>
 
-        <p className="footer__message">
-          For some, water is always within reach. For others, every drop begins
-          with a journey. May this story remind us never to take the simplest
-          things for granted.
-        </p>
+        <div className="footer__info">
+          <a
+            className="footer__back"
+            href="#arrival"
+            aria-label="Return to the beginning"
+            title="Return to the beginning"
+          >
+            <span aria-hidden="true">↑</span>
+          </a>
 
-        <a className="footer__back" href="#arrival">
-          <span aria-hidden="true">↑</span>
-          Return to the beginning
-        </a>
+          <div className="footer__info-item">
+            <p className="footer__label">CREATED FOR</p>
+            <p className="footer__value">
+              <a
+                href="https://bonolab.com/digiblue/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                DigiBlue
+              </a>
+              , an initiative by{" "}
+              <a href="https://bonolab.com/" target="_blank" rel="noreferrer">
+                BonoLab
+              </a>
+            </p>
+          </div>
+
+          <div className="footer__info-item">
+            <p className="footer__label">STORY &amp; DEVELOPMENT</p>
+            <p className="footer__value">
+              {" "}
+              <a href="https://zaouk.dev/" target="_blank" rel="noreferrer">
+                Mohammed Zaouk
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="footer__bottom">
         <span>Made with care in Morocco</span>
-        <span>A story about water, people, and everyday life.</span>
+        <span>
+          Everyone filmed gave permission. Location data removed from images.
+        </span>
       </div>
     </footer>
   );
