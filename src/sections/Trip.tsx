@@ -109,7 +109,6 @@ export default function Trip() {
           <div className="trip__frame">
             <LoopVideo
               src="/media/videos/water-intro.mp4"
-              poster="/media/images/water-intro-poster.jpg"
               label="Clip of the journey from Taza to the village"
             />
           </div>

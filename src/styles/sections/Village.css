@@ -3,7 +3,6 @@
   --village-ink: #2f241b;
   --village-text: #4a3d31;
   --village-accent: #11506d;
-  --village-cream: #f5eee2;
   --player-w: 28rem;
   --player-ratio: 4 / 5;
 
@@ -82,53 +81,6 @@
 .village__frame .loop-video {
   position: absolute;
   inset: 0;
-}
-
-.village__start {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.village__start:focus-visible {
-  outline: 3px solid var(--village-cream);
-  outline-offset: -8px;
-}
-
-.village__poster {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.village__play {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  width: 4.25rem;
-  height: 4.25rem;
-  margin: auto;
-  border-radius: 50%;
-  background: var(--village-cream);
-  color: var(--village-accent);
-  box-shadow: 0 10px 30px rgb(20 14 9 / 35%);
-}
-
-.village__play svg {
-  width: 1.7rem;
-  height: 1.7rem;
-  margin-inline-start: 0.12rem;
-  fill: currentColor;
 }
 
 .village__note {

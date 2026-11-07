@@ -19,8 +19,7 @@ export default function Story() {
       <section id="arrival" className="section section--arrival">
         <video
           className="hero__video"
-          src="media/videos/water-intro.mp4"
-          poster="media/videos/water-intro.mp4"
+          src="/media/videos/water-intro.mp4#t=0.001"
           autoPlay
           muted
           loop

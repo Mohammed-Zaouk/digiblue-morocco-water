@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import LoopVideo from "../components/LoopVideo";
 
 import "../styles/sections/Village.css";
@@ -10,7 +8,6 @@ const FILM = {
   role: "filmmaker",
   quote: "Here, the river is the laundry room, and a lot more than that.",
   video: "/media/videos/water-intro.mp4",
-  poster: "/media/images/water-intro-poster.jpg",
 };
 
 const MOMENTS = {
@@ -39,8 +36,6 @@ const SUBTITLES = [
 ];
 
 export default function Village() {
-  const [isPlaying, setIsPlaying] = useState(false);
-
   return (
     <div className="section__inner village">
       <p className="village__meta">
@@ -55,37 +50,12 @@ export default function Village() {
       <div className="village__interview">
         <figure className="village__player">
           <div className="village__frame">
-            {isPlaying ? (
-              <LoopVideo
-                variant="story"
-                src={FILM.video}
-                poster={FILM.poster}
-                label="Short documentary about daily life in the village"
-                subtitles={SUBTITLES}
-              />
-            ) : (
-              <button
-                type="button"
-                className="village__start"
-                onClick={() => setIsPlaying(true)}
-                aria-label="Play the short documentary about the village"
-              >
-                <img
-                  className="village__poster"
-                  src={FILM.poster}
-                  alt=""
-                  width={800}
-                  height={1000}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="village__play" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M8 5.5v13l11-6.5z" />
-                  </svg>
-                </span>
-              </button>
-            )}
+            <LoopVideo
+              variant="story"
+              src={FILM.video}
+              label="Short documentary about daily life in the village"
+              subtitles={SUBTITLES}
+            />
           </div>
 
           <figcaption className="village__note">

@@ -6,7 +6,6 @@ import "../styles/sections/Change.css";
 
 const FILM = {
   video: "/media/videos/water-intro.mp4",
-  poster: "/media/images/water-intro-poster.jpg",
   label: "Water running from a tap in the village",
   caption: "A tap, a smile, a shorter walk.",
 };
@@ -99,11 +98,7 @@ export default function Change() {
       <div className="change__lead">
         <figure className="change__film">
           <div className="change__frame">
-            <LoopVideo
-              src={FILM.video}
-              poster={FILM.poster}
-              label={FILM.label}
-            />
+            <LoopVideo src={FILM.video} label={FILM.label} />
           </div>
 
           <figcaption className="change__note">{FILM.caption}</figcaption>

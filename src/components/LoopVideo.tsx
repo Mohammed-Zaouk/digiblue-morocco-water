@@ -16,7 +16,6 @@ type Subtitle = {
 
 type LoopVideoProps = {
   src: string;
-  poster?: string;
   label: string;
   // "loop": muted, autoplays when visible, loops (ambient clips)
   // "story": sound on, plays once, no auto-resume (documentaries)
@@ -68,7 +67,6 @@ function Icon({ name }: { name: keyof typeof icons }) {
 
 export default function LoopVideo({
   src,
-  poster,
   label,
   variant = "loop",
   fit = "cover",
@@ -76,6 +74,10 @@ export default function LoopVideo({
   subtitles = [],
 }: LoopVideoProps) {
   const loop = variant === "loop";
+
+  // The #t fragment makes browsers (iPhone Safari included) show the first
+  // frame of the video itself, so no separate poster image is needed.
+  const firstFrameSrc = `${src}#t=0.001`;
 
   const boxRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -256,8 +258,7 @@ export default function LoopVideo({
       <video
         ref={videoRef}
         className="loop-video__media"
-        src={src}
-        poster={poster}
+        src={firstFrameSrc}
         muted={loop}
         loop={loop}
         playsInline

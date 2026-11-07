@@ -6,7 +6,6 @@ import "../styles/sections/Source.css";
 
 const FILM = {
   video: "/media/videos/source-film.mp4",
-  poster: "/media/images/water-intro-poster.jpg",
   label: "A donkey carrying full water containers back from the spring",
   caption: "The donkey takes the full containers back from the spring.",
 };
@@ -129,7 +128,6 @@ export default function Source() {
           <div className="source__frame">
             <LoopVideo
               src={FILM.video}
-              poster={FILM.poster}
               label={FILM.label}
               fit="contain"
               onRatio={setRatio}
