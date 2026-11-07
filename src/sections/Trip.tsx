@@ -6,16 +6,20 @@ import "../styles/sections/Trip.css";
 
 const STOPS = [
   {
-    label: "Leaving the city",
-    text: "The trip starts in Taza. Little by little, the city falls behind us.",
+    label: "Leaving Taza",
+    text: "Every visit to my grandparents starts here, in Taza. They live out in the countryside, and the city is already behind us long before the road ends.",
   },
   {
-    label: "On the road",
-    text: "Buildings give way to open land, and the road keeps winding away from town.",
+    label: "36 km of road",
+    text: "It takes 36 km to reach the rural area where they live. The road stops there, but their house is still a walk away.",
   },
   {
-    label: "Arriving",
-    text: "At the end of the road is my grandparents’ home, and a question that starts every morning: where will today’s water come from?",
+    label: "2 km on foot",
+    text: "The last 2 km are on foot, across the mountains. Whatever we bring with us, we carry.",
+  },
+  {
+    label: "The river",
+    text: "On the way we walk through a small river. For most people here it is more than a crossing: it is where the laundry gets washed and where a lot of everyday work happens.",
   },
 ];
 
@@ -33,10 +37,23 @@ export default function Trip() {
 
     let frame = 0;
 
+    // Reads a number from CSS, so the behavior is tuned in Trip.css
+    const readNumber = (name: string, fallback: number) => {
+      const value = parseFloat(getComputedStyle(route).getPropertyValue(name));
+      return Number.isNaN(value) ? fallback : value;
+    };
+
     const update = () => {
       frame = 0;
 
-      const line = window.innerHeight * 0.6;
+      // --trip-trigger: where on the screen (0 = top, 1 = bottom) a stop
+      //   becomes active.
+      // --trip-wait: 1 means no stop is active until the first one reaches
+      //   that line.
+      const trigger = readNumber("--trip-trigger", 0.6);
+      const waitForFirst = readNumber("--trip-wait", 0) === 1;
+
+      const line = window.innerHeight * trigger;
       const routeTop = route.getBoundingClientRect().top;
       const centers = dots.map((dot) => {
         const rect = dot.getBoundingClientRect();
@@ -54,7 +71,7 @@ export default function Trip() {
       route.style.setProperty("--rail-height", `${last - first}px`);
       route.style.setProperty("--progress", progress.toFixed(3));
 
-      let current = 0;
+      let current = waitForFirst ? -1 : 0;
       centers.forEach((center, index) => {
         if (center < line) current = index;
       });
@@ -93,13 +110,8 @@ export default function Trip() {
             <LoopVideo
               src="/media/videos/water-intro.mp4"
               poster="/media/images/water-intro-poster.jpg"
-              label="Looping clip of the road toward the village"
+              label="Clip of the journey from Taza to the village"
             />
-
-            <p className="trip__chip" aria-hidden="true">
-              <span>{String(active + 1).padStart(2, "0")}</span>
-              {STOPS[active].label}
-            </p>
           </div>
         </figure>
 

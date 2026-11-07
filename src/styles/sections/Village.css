@@ -79,6 +79,11 @@
   box-shadow: 0 24px 60px rgb(47 36 27 / 25%);
 }
 
+.village__frame .loop-video {
+  position: absolute;
+  inset: 0;
+}
+
 .village__start {
   position: absolute;
   inset: 0;
@@ -89,6 +94,8 @@
   border: 0;
   background: none;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .village__start:focus-visible {
@@ -103,41 +110,25 @@
   object-fit: cover;
 }
 
-.village__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: #1c140d;
-}
-
 .village__play {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4.25rem;
+  height: 4.25rem;
   margin: auto;
   border-radius: 50%;
   background: var(--village-cream);
   color: var(--village-accent);
   box-shadow: 0 10px 30px rgb(20 14 9 / 35%);
-  transition: transform 0.25s ease;
 }
 
 .village__play svg {
-  width: 1.6rem;
-  height: 1.6rem;
-  margin-inline-start: 0.15rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  margin-inline-start: 0.12rem;
   fill: currentColor;
-}
-
-@media (hover: hover) {
-  .village__start:hover .village__play {
-    transform: scale(1.08);
-  }
 }
 
 .village__note {
@@ -252,12 +243,5 @@
     width: 80%;
     margin-top: 0;
     margin-inline-start: auto;
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .village__play {
-    transition: none;
   }
 }

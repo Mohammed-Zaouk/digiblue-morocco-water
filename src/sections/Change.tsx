@@ -1,25 +1,27 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
+import LoopVideo from "../components/LoopVideo";
+
 import "../styles/sections/Change.css";
 
 const FILM = {
   video: "/media/videos/water-intro.mp4",
   poster: "/media/images/water-intro-poster.jpg",
-  label: "A hopeful moment: water reaching the village",
+  label: "Water running from a tap in the village",
   caption: "A tap, a smile, a shorter walk.",
 };
 
 const PHOTO = {
-  src: "/media/images/water-intro-poster.jpg",
+  src: "/media/images/change-moment.jpg",
   alt: "Water running from a tap in the village",
-  caption: "Water, a few steps from the door.",
+  caption: "A tap a few steps from the door.",
 };
 
 const LEAD = {
   title: "144",
   label:
-    "douars in Taza and Taounate supplied through a project fed by the Asfalou dam, reaching roughly 50,000 people.",
-  lede: "For families in these douars, a tap closer to home means fewer trips to carry water and more time for school, work and rest.",
+    "douars in Taza and Taounate now get water from a project fed by the Asfalou dam. Around 50,000 people live in them.",
+  lede: "Taza is where this trip started, so this project is close to home. When a tap reaches a douar, the walk to the spring gets shorter.",
   source:
     "Islamic Development Bank case study on rural water supply in Taza province",
 };
@@ -36,7 +38,7 @@ const PROGRESS = {
     { label: "2023", value: 56.9, text: "57%" },
     { label: "2024", value: 58.4, text: "58%" },
   ],
-  note: "Up about 20 points in seven years. Still, about 4 in 10 rural Moroccans are waiting.",
+  note: "That is about 20 points more in seven years, and about 4 in 10 people in rural Morocco still don’t have it.",
   source: "WHO/UNICEF Joint Monitoring Programme, via TheGlobalEconomy",
 };
 
@@ -76,35 +78,8 @@ function useReveal<T extends Element>(reduced: boolean) {
 }
 
 export default function Change() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(true);
   const [reduced] = useState(prefersReducedMotion);
   const [chartRef, chartShown] = useReveal<HTMLElement>(reduced);
-
-  // Play while on screen, pause when scrolled away (no autoplay with reduced motion)
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || reduced) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          void video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(video);
-
-    return () => observer.disconnect();
-  }, [reduced]);
-
-  // React does not reliably update the muted attribute, so set the property
-  useEffect(() => {
-    if (videoRef.current) videoRef.current.muted = muted;
-  }, [muted]);
 
   const summary = PROGRESS.items
     .map((item) => `${item.label} ${item.text}`)
@@ -124,49 +99,11 @@ export default function Change() {
       <div className="change__lead">
         <figure className="change__film">
           <div className="change__frame">
-            <video
-              ref={videoRef}
-              className="change__video"
+            <LoopVideo
               src={FILM.video}
               poster={FILM.poster}
-              aria-label={FILM.label}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              controls={reduced}
+              label={FILM.label}
             />
-
-            {!reduced && (
-              <button
-                type="button"
-                className="change__sound"
-                onClick={() => setMuted((value) => !value)}
-                aria-pressed={!muted}
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 9.5v5h3.5L12 19V5L7.5 9.5z" />
-                  {muted ? (
-                    <path
-                      d="M16 9.5l5 5m0-5l-5 5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  ) : (
-                    <path
-                      d="M15.5 9a4 4 0 0 1 0 6m2.5-8.5a7.5 7.5 0 0 1 0 11"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  )}
-                </svg>
-                <span>{muted ? "Sound off" : "Sound on"}</span>
-              </button>
-            )}
           </div>
 
           <figcaption className="change__note">{FILM.caption}</figcaption>

@@ -1,59 +1,45 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+
+import LoopVideo from "../components/LoopVideo";
 
 import "../styles/sections/Village.css";
 
-const INTERVIEW = {
-  speaker: "A villager",
-  relation: "from the village",
-  quote: "We plan the whole day around the water.",
+const FILM = {
+  title: "Short documentary",
+  author: "Mohammed Zaouk",
+  role: "filmmaker",
+  quote: "Here, the river is the laundry room, and a lot more than that.",
   video: "/media/videos/water-intro.mp4",
   poster: "/media/images/water-intro-poster.jpg",
 };
 
 const MOMENTS = {
   home: {
-    src: "/media/images/water-intro-poster.jpg",
-    alt: "A family home in the village",
-    caption: "The family home.",
+    src: "/media/images/village-home.jpeg",
+    alt: "My grandparents’ house in the village",
+    caption: "My grandparents’ house.",
   },
   daily: {
-    src: "/media/images/water-intro-poster.jpg",
+    src: "/media/images/village-daily.jpg",
     alt: "A morning in the village",
     caption: "An ordinary morning.",
   },
 };
 
 const LEDE =
-  "In the village, daily life follows the water: when it arrives, how far it has to be carried, and who goes to fetch it. The interview shows what that routine looks like from the inside.";
+  "The film follows daily life in the village: the washing at the river, the everyday jobs, and the people who do them. Nothing here comes out of a tap, so water decides what gets done and when.";
 
-// Subtitle files: public/media/subtitles/village-{lang}.vtt
+// Subtitle file: public/media/subtitles/village-en.vtt
 const SUBTITLES = [
-  { lang: "en", label: "English" },
-  { lang: "ar", label: "العربية" },
-  { lang: "fr", label: "Français" },
+  {
+    lang: "en",
+    label: "English",
+    src: "/media/subtitles/village-en.vtt",
+  },
 ];
 
 export default function Village() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  // Play after the tap, pause when the video scrolls out of view
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!isPlaying || !video) return;
-
-    void video.play().catch(() => {});
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) video.pause();
-      },
-      { threshold: 0.25 },
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, [isPlaying]);
 
   return (
     <div className="section__inner village">
@@ -63,44 +49,30 @@ export default function Village() {
       </p>
 
       <h2 className="village__title">
-        The village, <span>in their own words</span>
+        The village, <span>day to day</span>
       </h2>
 
       <div className="village__interview">
         <figure className="village__player">
           <div className="village__frame">
             {isPlaying ? (
-              <video
-                ref={videoRef}
-                className="village__video"
-                src={INTERVIEW.video}
-                poster={INTERVIEW.poster}
-                aria-label={`Interview with ${INTERVIEW.speaker}`}
-                controls
-                playsInline
-                preload="auto"
-              >
-                {SUBTITLES.map((track) => (
-                  <track
-                    key={track.lang}
-                    kind="subtitles"
-                    src={`/media/subtitles/village-${track.lang}.vtt`}
-                    srcLang={track.lang}
-                    label={track.label}
-                    default={track.lang === "en"}
-                  />
-                ))}
-              </video>
+              <LoopVideo
+                variant="story"
+                src={FILM.video}
+                poster={FILM.poster}
+                label="Short documentary about daily life in the village"
+                subtitles={SUBTITLES}
+              />
             ) : (
               <button
                 type="button"
                 className="village__start"
                 onClick={() => setIsPlaying(true)}
-                aria-label={`Play the interview with ${INTERVIEW.speaker}`}
+                aria-label="Play the short documentary about the village"
               >
                 <img
                   className="village__poster"
-                  src={INTERVIEW.poster}
+                  src={FILM.poster}
                   alt=""
                   width={800}
                   height={1000}
@@ -117,17 +89,16 @@ export default function Village() {
           </div>
 
           <figcaption className="village__note">
-            Interview with {INTERVIEW.speaker}. Subtitles in English, Arabic and
-            French.
+            {FILM.title} on daily life in the village. English subtitles.
           </figcaption>
         </figure>
 
         <div className="village__voice">
           <blockquote className="village__quote">
-            <p>{INTERVIEW.quote}</p>
+            <p>{FILM.quote}</p>
           </blockquote>
           <p className="village__cite">
-            <strong>{INTERVIEW.speaker}</strong>, {INTERVIEW.relation}
+            <strong>{FILM.author}</strong>, {FILM.role}
           </p>
           <p className="village__lede">{LEDE}</p>
         </div>

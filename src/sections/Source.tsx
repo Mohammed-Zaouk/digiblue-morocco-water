@@ -1,29 +1,34 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
+import LoopVideo from "../components/LoopVideo";
+
 import "../styles/sections/Source.css";
 
 const FILM = {
-  video: "/media/videos/water-intro.mp4",
+  video: "/media/videos/source-film.mp4",
   poster: "/media/images/water-intro-poster.jpg",
-  label: "A donkey carrying water containers back from the source",
-  caption: "The daily trip back from the spring, containers loaded.",
+  label: "A donkey carrying full water containers back from the spring",
+  caption: "The donkey takes the full containers back from the spring.",
 };
+
+// Used until the video reports its real size (9:16 portrait)
+const DEFAULT_RATIO = 9 / 16;
 
 const MOMENTS = {
   spring: {
-    src: "/media/images/water-intro-poster.jpg",
-    alt: "The water source outside the village",
+    src: "/media/images/source-spring.jpg",
+    alt: "The spring outside the village",
     caption: "The spring, a long walk from the nearest house.",
   },
   hands: {
     src: "/media/images/water-intro-poster.jpg",
     alt: "Hands filling containers with water",
-    caption: "Every container is filled by hand.",
+    caption: "Filling the containers at the spring, one by one.",
   },
 };
 
 const LEDE =
-  "For many rural families, water does not come from a tap. It is carried home from the source, one container at a time, and every trip costs time and strength.";
+  "The river in the village is for washing and everyday work. Drinking water comes from the spring, and someone has to bring it back, container by container.";
 
 const FACTS = {
   access: {
@@ -77,31 +82,10 @@ function prefersReducedMotion() {
 }
 
 export default function Source() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const factsRef = useRef<HTMLUListElement>(null);
-  const [muted, setMuted] = useState(true);
   const [shown, setShown] = useState(false);
   const [reduced] = useState(prefersReducedMotion);
-
-  // Play while on screen, pause when scrolled away (no autoplay with reduced motion)
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || reduced) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          void video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(video);
-
-    return () => observer.disconnect();
-  }, [reduced]);
+  const [ratio, setRatio] = useState(DEFAULT_RATIO);
 
   // Fill the numbers in once they scroll into view (instantly with reduced motion)
   useEffect(() => {
@@ -126,11 +110,6 @@ export default function Source() {
     return () => observer.disconnect();
   }, [reduced]);
 
-  // React does not reliably update the muted attribute, so set the property
-  useEffect(() => {
-    if (videoRef.current) videoRef.current.muted = muted;
-  }, [muted]);
-
   return (
     <div className="section__inner source">
       <p className="source__meta">
@@ -142,57 +121,26 @@ export default function Source() {
         Every drop is <span>carried home</span>
       </h2>
 
-      <figure className="source__film">
-        <div className="source__frame">
-          <video
-            ref={videoRef}
-            className="source__video"
-            src={FILM.video}
-            poster={FILM.poster}
-            aria-label={FILM.label}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            controls={reduced}
-          />
+      <div
+        className="source__intro"
+        style={{ "--ratio": ratio } as CSSProperties}
+      >
+        <figure className="source__film">
+          <div className="source__frame">
+            <LoopVideo
+              src={FILM.video}
+              poster={FILM.poster}
+              label={FILM.label}
+              fit="contain"
+              onRatio={setRatio}
+            />
+          </div>
 
-          {!reduced && (
-            <button
-              type="button"
-              className="source__sound"
-              onClick={() => setMuted((value) => !value)}
-              aria-pressed={!muted}
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 9.5v5h3.5L12 19V5L7.5 9.5z" />
-                {muted ? (
-                  <path
-                    d="M16 9.5l5 5m0-5l-5 5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-                ) : (
-                  <path
-                    d="M15.5 9a4 4 0 0 1 0 6m2.5-8.5a7.5 7.5 0 0 1 0 11"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-                )}
-              </svg>
-              <span>{muted ? "Sound off" : "Sound on"}</span>
-            </button>
-          )}
-        </div>
+          <figcaption className="source__note">{FILM.caption}</figcaption>
+        </figure>
 
-        <figcaption className="source__note">{FILM.caption}</figcaption>
-      </figure>
-
-      <p className="source__lede">{LEDE}</p>
+        <p className="source__lede">{LEDE}</p>
+      </div>
 
       <ul
         ref={factsRef}
@@ -205,8 +153,8 @@ export default function Source() {
             <span>%</span>
           </p>
           <p className="source__label">
-            of rural Moroccans use safely managed drinking water. About 4 in 10
-            still do not.
+            of people in rural Morocco have safely managed drinking water. About
+            4 in 10 do not.
           </p>
 
           <div className="source__drops" aria-hidden="true">
@@ -245,8 +193,8 @@ export default function Source() {
             <span>+ hours</span>
           </p>
           <p className="source__label">
-            a day: what women in remote villages are reported to spend fetching
-            water.
+            a day is what women in remote villages are reported to spend
+            fetching water.
           </p>
 
           <div className="source__hours" aria-hidden="true">
@@ -269,8 +217,8 @@ export default function Source() {
             <span>m³</span>
           </p>
           <p className="source__label">
-            of water per person per year is where Morocco is heading by 2050,
-            down from {FACTS.scarcity.then} in 2015.
+            of water per person per year is what Morocco is heading toward by
+            2050, down from {FACTS.scarcity.then} in 2015.
           </p>
 
           <div className="source__bars source__bars--scale">

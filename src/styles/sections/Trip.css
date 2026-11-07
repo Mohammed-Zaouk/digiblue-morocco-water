@@ -4,7 +4,8 @@
   --trip-text: #4a3d31;
   --trip-accent: #11506d;
   --trip-line: rgb(47 36 27 / 25%);
-  --trip-cream: #f5eee2;
+  --trip-trigger: 0.6;
+  --trip-wait: 0;
   --frame-h: min(68svh, 34rem);
   --stop-h: 60svh;
   --route-pad: 3rem;
@@ -79,29 +80,6 @@
   border-radius: 1.5rem;
   background: #c9b48c;
   box-shadow: 0 24px 60px rgb(47 36 27 / 25%);
-}
-
-.trip__chip {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  display: flex;
-  gap: 0.7rem;
-  align-items: center;
-  margin: 0;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  background: rgb(20 14 9 / 55%);
-  color: var(--trip-cream);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  backdrop-filter: blur(6px);
-}
-
-.trip__chip span {
-  opacity: 0.7;
 }
 
 /* Rail */
@@ -209,6 +187,8 @@
   .section__inner.trip {
     --frame-h: min(46svh, 22rem);
     --route-pad: 2.5rem;
+    --trip-trigger: 0.35;
+    --trip-wait: 1;
 
     padding-top: 6rem;
   }

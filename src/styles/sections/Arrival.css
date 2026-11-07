@@ -46,7 +46,17 @@
 }
 
 .arrival__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin: 0 0 1rem;
+}
+
+.arrival__eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: #f2c98a;
 }
 
 .arrival__hook {
