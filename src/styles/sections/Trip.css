@@ -4,10 +4,10 @@
   --trip-text: #4a3d31;
   --trip-accent: #11506d;
   --trip-line: rgb(47 36 27 / 25%);
-  --trip-trigger: 0.6;
+  --trip-trigger: 0.5;
   --trip-wait: 0;
   --frame-h: min(68svh, 34rem);
-  --stop-h: 60svh;
+  --stop-h: 50svh;
   --route-pad: 3rem;
   --rail-x: 0.5rem;
 
@@ -187,7 +187,6 @@
   .section__inner.trip {
     --frame-h: min(46svh, 22rem);
     --route-pad: 2.5rem;
-    --trip-trigger: 0.35;
     --trip-wait: 1;
 
     padding-top: 6rem;
