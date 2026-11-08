@@ -8,7 +8,7 @@ import Source from "../sections/Source";
 import Trip from "../sections/Trip";
 import Village from "../sections/Village";
 
-import "../styles/story.css";
+import "../styles/Story.css";
 
 export default function Story() {
   return (
