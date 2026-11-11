@@ -14,9 +14,6 @@
   color: #f5eee2;
 }
 
-/* Soft dark shade behind the text, so it reads over any frame of the video.
-   It fades out well above the bottom, so the fade into the next section
-   (the hero overlay) is untouched. */
 .section__inner.arrival::before {
   content: "";
   position: absolute;
