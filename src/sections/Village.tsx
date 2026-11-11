@@ -3,7 +3,7 @@ import LoopVideo from "../components/LoopVideo";
 import "../styles/sections/Village.css";
 
 const FILM = {
-  title: "Short documentary",
+  title: "Village life",
   author: "Mohammed Zaouk",
   role: "filmmaker",
   quote: "Here, the river is the laundry room, and a lot more than that.",
@@ -12,28 +12,19 @@ const FILM = {
 
 const MOMENTS = {
   home: {
-    src: "/media/images/village-home.jpeg",
+    src: "/media/images/village-home.webp",
     alt: "My grandparents’ house in the village",
     caption: "My grandparents’ house.",
   },
   daily: {
-    src: "/media/images/village-daily.jpg",
+    src: "/media/images/village-daily.webp",
     alt: "A morning in the village",
     caption: "An ordinary morning.",
   },
 };
 
 const LEDE =
-  "The film follows daily life in the village: the washing at the river, the everyday jobs, and the people who do them. Nothing here comes out of a tap, so water decides what gets done and when.";
-
-// Subtitle file: public/media/subtitles/village-en.vtt
-const SUBTITLES = [
-  {
-    lang: "en",
-    label: "English",
-    src: "/media/subtitles/village-en.vtt",
-  },
-];
+  "Daily life in the village runs on the river: the washing, the everyday jobs, and the people who do them. Nothing here comes out of a tap, so water decides what gets done and when.";
 
 export default function Village() {
   return (
@@ -50,16 +41,11 @@ export default function Village() {
       <div className="village__interview">
         <figure className="village__player">
           <div className="village__frame">
-            <LoopVideo
-              variant="story"
-              src={FILM.video}
-              label="Short documentary about daily life in the village"
-              subtitles={SUBTITLES}
-            />
+            <LoopVideo src={FILM.video} label="Daily life in the village" />
           </div>
 
           <figcaption className="village__note">
-            {FILM.title} on daily life in the village. English subtitles.
+            {FILM.title}: the river, the washing and the daily work.
           </figcaption>
         </figure>
 

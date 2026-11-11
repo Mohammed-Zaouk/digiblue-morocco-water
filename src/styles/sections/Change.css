@@ -4,7 +4,7 @@
   --change-text: rgb(244 249 251 / 90%);
   --change-accent: #f2c98a;
   --change-blue: #1d6a8f;
-  --film-w: 100%;
+  --film-w: 28rem;
 
   padding: 7rem max(1.5rem, 5vw) 4rem;
   color: var(--change-ink);
@@ -68,14 +68,14 @@
 /* Lead */
 .change__lead {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
   max-width: 78rem;
   margin-top: 3rem;
 }
 
-/* Film */
+/* Hero image */
 .change__film {
   margin: 0;
 }
@@ -84,15 +84,15 @@
   position: relative;
   overflow: hidden;
   width: min(100%, var(--film-w));
-  aspect-ratio: 16 / 9;
   border-radius: 1.5rem;
   background: #14506d;
   box-shadow: 0 24px 60px rgb(6 28 40 / 40%);
 }
 
-.change__frame .loop-video {
-  position: absolute;
-  inset: 0;
+.change__image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .change__note {
@@ -272,6 +272,8 @@
 /* Tablet and phone */
 @media (max-width: 860px) {
   .section__inner.change {
+    --film-w: 100%;
+
     padding-top: 6rem;
   }
 

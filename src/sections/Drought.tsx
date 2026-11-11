@@ -12,12 +12,12 @@ const LEAD = {
 
 const MOMENTS = {
   ground: {
-    src: "/media/images/drought-ground.jpg",
+    src: "/media/images/drought-ground.webp",
     alt: "Dry, cracked ground near the village",
     caption: "Dry ground outside the village.",
   },
   spring: {
-    src: "/media/images/drought-spring.jpg",
+    src: "/media/images/drought-spring.webp",
     alt: "A low spring in a dry landscape",
     caption: "The spring, lower than anyone remembers.",
   },

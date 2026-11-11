@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-import LoopVideo from "../components/LoopVideo";
-
 import "../styles/sections/Change.css";
 
-const FILM = {
-  video: "/media/videos/water-intro.mp4",
-  label: "Water running from a tap in the village",
-  caption: "A tap, a smile, a shorter walk.",
+const HERO = {
+  src: "/media/images/village-walk.webp",
+  alt: "A donkey seen from behind, loaded with large woven baskets, walking along a paved road",
+  caption: "Where no tap has arrived yet, loads still travel by donkey.",
 };
 
 const PHOTO = {
-  src: "/media/images/change-moment.jpg",
+  src: "/media/images/change-moment.webp",
   alt: "Water running from a tap in the village",
   caption: "A tap a few steps from the door.",
 };
@@ -98,10 +96,18 @@ export default function Change() {
       <div className="change__lead">
         <figure className="change__film">
           <div className="change__frame">
-            <LoopVideo src={FILM.video} label={FILM.label} />
+            <img
+              className="change__image"
+              src={HERO.src}
+              alt={HERO.alt}
+              width={1200}
+              height={1500}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
-          <figcaption className="change__note">{FILM.caption}</figcaption>
+          <figcaption className="change__note">{HERO.caption}</figcaption>
         </figure>
 
         <div className="change__headline">

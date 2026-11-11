@@ -15,12 +15,12 @@ const DEFAULT_RATIO = 9 / 16;
 
 const MOMENTS = {
   spring: {
-    src: "/media/images/source-spring.jpg",
+    src: "/media/images/source-spring.webp",
     alt: "The spring outside the village",
     caption: "The spring, a long walk from the nearest house.",
   },
   hands: {
-    src: "/media/images/water-intro-poster.jpg",
+    src: "/media/images/water-intro-poster.webp",
     alt: "Hands filling containers with water",
     caption: "Filling the containers at the spring, one by one.",
   },
