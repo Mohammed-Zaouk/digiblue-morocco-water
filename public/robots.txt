@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://digiblue-morocco-water-j8w4.vercel.app/sitemap.xml
