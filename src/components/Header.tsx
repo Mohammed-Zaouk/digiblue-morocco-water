@@ -8,18 +8,12 @@ export default function Header() {
         href="#arrival"
         aria-label="A Journey for Water, return to the beginning"
       >
-        <span className="header__icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 9c3-3 6 3 9 0s6-3 9 0" />
-            <path d="M3 15c3-3 6 3 9 0s6-3 9 0" />
-          </svg>
+        <span className="header__icon">
+          <img
+            src="/favicon/android-chrome-192x192.png"
+            alt=""
+            aria-hidden="true"
+          />
         </span>
 
         <span className="header__text">
